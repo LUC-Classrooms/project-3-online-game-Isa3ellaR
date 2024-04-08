@@ -20,13 +20,13 @@ function draw() {
   gameOver(); // call the gameOver screen function (below)
   switch(gameState){
     case "splash" :
-      splash();
+      splash(); //go to "splash"
       break;
     case "play" :
-      play()
+      play() //go to the "play" screen
       break;
     case "gameOver":
-      gameOver();
+      gameOver(); //go to the game over screen
       break;
     default:
       console.log("no match found")
@@ -68,12 +68,12 @@ function mousePressed() {
   if(gameState == "splash"){
     gameState = "play";
 
-  } 
+  } //go to "play"
   else if(gameState == "play"){
     gameState = "gameOver";
-  } 
+  } //go to "gameOver"
   else if (gameState == "gameover"){
     gameState = "splash";
-  }
+  } //go to "splash"
   console.log (gameState)
 }
