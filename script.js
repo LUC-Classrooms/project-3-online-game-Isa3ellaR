@@ -4,6 +4,7 @@
  * 
  * Use this template to get started creating a simple 2D game for the web using P5.js. 
  */
+var gameState = "splash";
 
 function setup() {
 
@@ -16,8 +17,20 @@ function draw() {
   /* un-comment each line to see it work */
   //splash(); // call the splash screen function (below)
   //play(); // call the play screen function (below)
-  //gameOver(); // call the gameOver screen function (below)
-
+  gameOver(); // call the gameOver screen function (below)
+  switch(gameState){
+    case "splash" :
+      splash();
+      break;
+    case "play" :
+      play()
+      break;
+    case "gameOver":
+      gameOver();
+      break;
+    default:
+      console.log("no match found")
+  }
 }
 
 function splash() {
@@ -52,5 +65,15 @@ function gameOver() {
 function mousePressed() {
 
   console.log("click!");
+  if(gameState == "splash"){
+    gameState = "play";
 
+  } 
+  else if(gameState == "play"){
+    gameState = "gameOver";
+  } 
+  else if (gameState == "gameover"){
+    gameState = "splash";
+  }
+  console.log (gameState)
 }
