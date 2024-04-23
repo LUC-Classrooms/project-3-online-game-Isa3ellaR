@@ -5,10 +5,13 @@
  * Use this template to get started creating a simple 2D game for the web using P5.js. 
  */
 var gameState = "splash";
-
+var player1
 function setup() {
 
   createCanvas(600, 400);
+  player1 = new Player(width/2, height* 4/5);
+  
+  }
 
 }
 
@@ -23,7 +26,7 @@ function draw() {
       splash(); //go to "splash"
       break;
     case "play" :
-      play() //go to the "play" screen
+      play(); //go to the "play" screen
       break;
     case "gameOver":
       gameOver(); //go to the game over screen
@@ -50,6 +53,9 @@ function play() {
   textAlign(CENTER);
   textSize(16);
   text("This is where the Game happens", width / 2, height / 2);
+  player1.x = mouseX;
+  player1.y = mouseY;
+  player1.display();
 
 }
 
@@ -77,3 +83,25 @@ function mousePressed() {
   } //go to "splash"
   console.log (gameState)
 }
+/*
+function keyPressed(){
+  switch(keyCode){
+    case UP_ARROW :
+      player1.y -= 30; //subtracts 30 px from .y
+      break;
+  case DOWN_ARROW :
+      player1.y += 30; //adds 30 px from .y
+      break;
+  case LEFT_ARROW :
+    player1.x -= 30;
+    break;
+  case RIGHT_ARROW :
+    player1.x += 30;
+    break;
+  default:
+    console.log("use the arrow keys to move!")
+
+  }
+}
+*/
+
