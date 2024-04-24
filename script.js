@@ -6,21 +6,22 @@
  */
 var gameState = "splash";
 var player1
+
 function setup() {
 
   createCanvas(600, 400);
   player1 = new Player(width/2, height* 4/5);
   
-  }
-
 }
+
+
 
 function draw() {
   background(200);
   /* un-comment each line to see it work */
   //splash(); // call the splash screen function (below)
   //play(); // call the play screen function (below)
-  gameOver(); // call the gameOver screen function (below)
+  //gameOver(); // call the gameOver screen function (below)
   switch(gameState){
     case "splash" :
       splash(); //go to "splash"
@@ -78,7 +79,7 @@ function mousePressed() {
   else if(gameState == "play"){
     gameState = "gameOver";
   } //go to "gameOver"
-  else if (gameState == "gameover"){
+  else if (gameState == "gameOver"){
     gameState = "splash";
   } //go to "splash"
   console.log (gameState)
