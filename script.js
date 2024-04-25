@@ -5,13 +5,16 @@
  * Use this template to get started creating a simple 2D game for the web using P5.js. 
  */
 var gameState = "splash";
-var player1
+var player1;
+var gameTimer; //time the game play
+
 
 function setup() {
 
   createCanvas(600, 400);
   player1 = new Player(width/2, height* 4/5);
-  
+  console.log(player1);
+  gameTimer = new Timer(10000); //10 second timer
 }
 
 
@@ -54,10 +57,17 @@ function play() {
   textAlign(CENTER);
   textSize(16);
   text("This is where the Game happens", width / 2, height / 2);
-  player1.x = mouseX;
-  player1.y = mouseY;
+  //player1.x = mouseX;
+  //player1.y = mouseY;
   player1.display();
+ // player1.move();
 
+  if(gameTimer.isFinished()){
+    gameState = "gameOver";
+  }
+  textAlign(LEFT);
+  text("elapsed time:" + gameTimer.elapsedTime, 40, 100);
+  //show elapsed time in top left corner
 }
 
 function gameOver() {
@@ -74,17 +84,22 @@ function mousePressed() {
   console.log("click!");
   if(gameState == "splash"){
     gameState = "play";
+    gameTimer.start(); //start the timer
 
   } //go to "play"
   else if(gameState == "play"){
-    gameState = "gameOver";
+    //gameState = "gameOver";
   } //go to "gameOver"
   else if (gameState == "gameOver"){
     gameState = "splash";
   } //go to "splash"
   console.log (gameState)
+  if (gameState == "splash"){
+    gameState = "play"; //go to the play() screen
+
+  }
 }
-/*
+
 function keyPressed(){
   switch(keyCode){
     case UP_ARROW :
@@ -104,5 +119,5 @@ function keyPressed(){
 
   }
 }
-*/
+
 
