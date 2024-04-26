@@ -7,14 +7,20 @@
 var gameState = "splash";
 var player1;
 var gameTimer; //time the game play
+var testBox; //box preview on the splash screen
+var dropTimer; //regulate box drops
+var presents = new Array(0); //empty array called "presents"
 
 
 function setup() {
 
   createCanvas(600, 400);
   player1 = new Player(width/2, height* 4/5);
+  testBox = new Box(width/2, height/3)
   console.log(player1);
   gameTimer = new Timer(10000); //10 second timer
+  dropTimer = new Timer(1000); //1 second 
+
 }
 
 
@@ -48,6 +54,8 @@ function splash() {
   text("Let's Play a Game!", width / 2, height / 2);
   textSize(12);
   text("(click the mouse to continue)", width / 2, height / 2 + 30);
+  testBox.display();
+  testBox.spin();
 }
 
 function play() {
@@ -65,8 +73,30 @@ function play() {
   if(gameTimer.isFinished()){
     gameState = "gameOver";
   }
+  if(dropTimer.isFinished()){
+    let p = new Box(random(width), -40);
+    presents.push(p); //add p to the array
+    dropTimer.start();
+    console.log(p);
+    }
+
+  for(let i = 0; i < presents.length; i++){
+    presents[i].display();
+    presents[i].move();
+    presents[i].spin();
+
+    if(presents[i].y > height){
+      presents.splice(i, 1); //remove from array
+    }
+    let d = dist(presents[i].x, presents[i].y, player1.x, player1.y);
+    if(d< 50){
+      presents.splice(i, 1) //remove 1 item at index 'i'
+    }
+
+  }//end of for()loop
   textAlign(LEFT);
   text("elapsed time:" + gameTimer.elapsedTime, 40, 100);
+
   //show elapsed time in top left corner
 }
 
@@ -85,6 +115,7 @@ function mousePressed() {
   if(gameState == "splash"){
     gameState = "play";
     gameTimer.start(); //start the timer
+    dropTimer.start(); //starts drop timer
 
   } //go to "play"
   else if(gameState == "play"){
