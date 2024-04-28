@@ -26,7 +26,7 @@ function setup() {
 
 
 function draw() {
-  background(200);
+  background(255, 240, 140);
   /* un-comment each line to see it work */
   //splash(); // call the splash screen function (below)
   //play(); // call the play screen function (below)
@@ -48,7 +48,7 @@ function draw() {
 
 function splash() {
   // this is what you would see when the game starts
-  background(200);
+  background(255, 240, 140); //light yellow
   textAlign(CENTER);
   textSize(16);
   text("Let's Play a Game!", width / 2, height / 2);
@@ -60,7 +60,7 @@ function splash() {
 
 function play() {
   // this is what you see when the game is running 
-  background(0, 200, 0);
+  background(238, 196, 255); //light pink
   fill(0, 0, 200)
   textAlign(CENTER);
   textSize(16);
